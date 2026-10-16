@@ -122,13 +122,13 @@ else:
     st.plotly_chart(fig3, use_container_width=True)
 
 st.subheader("4. 유형별 요약")
-summary = data.groupby("유형").agg(
-    편수=("movieNm", "size"),
-    스크린_수_평균=("first_scrn", "mean"),
-    누적_관객_평균=("total_audi", "mean"),
-    10위권_일수_평균=("days_in_top10", "mean"),
-    롱런_지수_평균=("long_run_index", "mean"),
-).reindex(CLUSTER_LABELS)
+summary = data.groupby("유형").agg(**{
+    "편수": ("movieNm", "size"),
+    "스크린_수_평균": ("first_scrn", "mean"),
+    "누적_관객_평균": ("total_audi", "mean"),
+    "10위권_일수_평균": ("days_in_top10", "mean"),
+    "롱런_지수_평균": ("long_run_index", "mean"),
+}).reindex(CLUSTER_LABELS)
 summary = summary.rename(columns={
     "스크린_수_평균": "스크린 수 평균",
     "누적_관객_평균": "누적 관객 평균",
