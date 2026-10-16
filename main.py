@@ -1,4 +1,3 @@
-```python
 # main.py — 영화 유형 나누기
 import streamlit as st
 import numpy as np
